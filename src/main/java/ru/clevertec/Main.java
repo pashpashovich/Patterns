@@ -22,26 +22,15 @@ public class Main {
             int num = in.nextInt();
             in.nextLine();
             switch (num) {
-                case 1: {
-                    scheduleFacade.addViewer();
-                    break;
-                }
-                case 2:
-                    movieFacade.addMovie();
-                    break;
-                case 3:
-                    scheduleFacade.displaySchedule();
-                    break;
-                case 4:
-                    scheduleFacade.editMovie();
-                    break;
-                case 5:
-                    scheduleFacade.deleteMovie();
-                    break;
-                case 0:
+                case 1 -> scheduleFacade.addViewer();
+                case 2 -> movieFacade.addMovie();
+                case 3 -> scheduleFacade.displaySchedule();
+                case 4 -> scheduleFacade.editMovie();
+                case 5 -> scheduleFacade.deleteMovie();
+                case 0 -> {
                     return;
-                default:
-                    System.out.println("\tНеправильный ввод");
+                }
+                default -> System.out.println("\tНеправильный ввод");
             }
         }
     }

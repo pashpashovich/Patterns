@@ -13,6 +13,6 @@ public class HorrorMovie extends Movie {
 
     @Override
     public void showInfo() {
-        System.out.println("----------------\nНазвание: " + title + "\nЖанр: ужастик\nВозрастное ограничение: " + age_rating + "+" + "\nДата показа: " + formatDate() + "\nВремя показа: " + time + "\n----------------");
+        System.out.println("----------------\nНазвание: " + getTitle() + "\nЖанр: ужастик\nВозрастное ограничение: " + age_rating + "+" + "\nДата показа: " + formatDate() + "\nВремя показа: " + getTime() + "\n----------------");
     }
 }

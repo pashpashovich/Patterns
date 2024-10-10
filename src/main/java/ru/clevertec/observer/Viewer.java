@@ -9,6 +9,6 @@ public class Viewer implements Observer {
 
     @Override
     public void update() {
-        System.out.println("\t"+name + " получил уведомление о изменении расписания фильмов!");
+        System.out.println("\t" + name + " получил уведомление о изменении расписания фильмов!");
     }
 }

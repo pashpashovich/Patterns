@@ -10,6 +10,6 @@ public class ActionMovie extends Movie {
 
     @Override
     public void showInfo() {
-        System.out.println("----------------\nНазвание: " + title + "\nЖанр: боевик" + "\nДата показа: " + formatDate() + "\nВремя показа: " + time + "\n----------------");
+        System.out.println("----------------\nНазвание: " + getTitle() + "\nЖанр: боевик" + "\nДата показа: " + formatDate() + "\nВремя показа: " + getTime() + "\n----------------");
     }
 }

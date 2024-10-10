@@ -16,33 +16,73 @@ public class ScheduleFacade {
     Schedule schedule = Schedule.getInstance();
 
     public void editMovie() {
+        int selectedMovieIndex = selectMovie();
+        if (selectedMovieIndex == -1) return;
+
+        Date date = inputDate();
+        LocalTime time = inputTime();
+
+        schedule.changeSchedule(selectedMovieIndex, date, time);
+    }
+
+    public void deleteMovie() {
+        int selectedMovieIndex = selectMovie();
+        if (selectedMovieIndex == -1) return;
+
+        schedule.deleteMovie(selectedMovieIndex);
+    }
+
+    public void displaySchedule() {
+        schedule.showInfo();
+    }
+
+    public void addViewer() {
+        System.out.print("Введите имя подписчика: ");
+        String name = in.nextLine();
+        schedule.attach(name);
+    }
+
+    public void addMovie(Movie movie) {
+        schedule.addMovie(movie);
+    }
+
+    private int selectMovie() {
         ArrayList<Component> movs = (ArrayList<Component>) schedule.getMovies();
         if (movs.isEmpty()) {
             System.out.println("В расписании нет фильмов");
-            return;
+            return -1;
         }
         System.out.println("Выберите фильм для изменения:");
         for (int i = 0; i < movs.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + ((Movie)movs.get(i)).getTitle());
+            System.out.println("\t" + (i + 1) + ". " + ((Movie) movs.get(i)).getTitle());
         }
-        int c = in.nextInt();
+        int selectedMovieIndex = in.nextInt() - 1;
         in.nextLine();
+        return selectedMovieIndex;
+    }
+
+    private Date inputDate() {
         Date date;
         while (true) {
             try {
+                in = new Scanner(System.in);
                 System.out.print("Введите новую дату показа фильма (в формате дд.мм.гггг): ");
                 String d = in.nextLine();
-                SimpleDateFormat format = new SimpleDateFormat();
-                format.applyPattern("dd.MM.yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
                 date = format.parse(d);
                 break;
             } catch (ParseException e) {
                 System.out.println("\tНекорректный ввод даты");
             }
         }
+        return date;
+    }
+
+    private LocalTime inputTime() {
         LocalTime time;
         while (true) {
             try {
+                in = new Scanner(System.in);
                 System.out.print("Введите новое время показа фильма (в формате чч:мм): ");
                 String t = in.nextLine();
                 String[] decode = t.split(":");
@@ -52,32 +92,6 @@ public class ScheduleFacade {
                 System.out.println("\tНекорректный ввод времени");
             }
         }
-        schedule.changeSchedule(c - 1, date, time);
-    }
-
-    public void deleteMovie() {
-        ArrayList<Component> movs = (ArrayList<Component>) schedule.getMovies();
-        if (movs.isEmpty()) {
-            System.out.println("В расписании нет фильмов");
-            return;
-        }
-        System.out.println("Выберите фильм для изменения:");
-        for (int i = 0; i < movs.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + ((Movie) movs.get(i)).getTitle());
-        }
-        int c = in.nextInt();
-        in.nextLine();
-        schedule.deleteMovie(c - 1);
-    }
-    public void displaySchedule(){
-        schedule.showInfo();
-    }
-    public void addViewer(){
-        System.out.print("Введите имя подписчика: ");
-        String name = in.nextLine();
-        schedule.attach(name);
-    }
-    public void addMovie(Movie movie){
-        schedule.addMovie(movie);
+        return time;
     }
 }

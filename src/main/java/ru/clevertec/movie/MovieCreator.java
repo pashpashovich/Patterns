@@ -5,7 +5,6 @@ import ru.clevertec.factory.ActionMovieFactory;
 import ru.clevertec.factory.ComedyMovieFactory;
 import ru.clevertec.factory.HorrorMovieFactory;
 import ru.clevertec.factory.MovieFactory;
-import ru.clevertec.movie.Movie;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,25 +21,11 @@ public class MovieCreator {
                 "\n1 - Боевик" +
                 "\n2 - Комедия" +
                 "\n3 - Ужастик");
-        int n = in.nextInt();
-        in.nextLine();
-        int genre;
-        switch (n) {
-            case 1:
-                genre = 1;
-                break;
-            case 2:
-                genre = 2;
-                break;
-            case 3:
-                genre = 3;
-                break;
-            default:
-                genre = 0;
-        }
-        Date date = null;
+        int genre = in.nextInt();
+        Date date;
         while (true) {
             try {
+                in = new Scanner(System.in);
                 System.out.print("Введите дату показа фильма (в формате дд.мм.гггг): ");
                 String d = in.nextLine();
                 SimpleDateFormat format = new SimpleDateFormat();
@@ -54,6 +39,7 @@ public class MovieCreator {
         LocalTime time = null;
         while (true) {
             try {
+                in = new Scanner(System.in);
                 System.out.print("Введите время показа фильма (в формате чч:мм): ");
                 String t = in.nextLine();
                 String[] decode = t.split(":");

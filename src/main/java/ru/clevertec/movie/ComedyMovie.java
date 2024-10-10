@@ -10,6 +10,6 @@ public class ComedyMovie extends Movie {
 
     @Override
     public void showInfo() {
-        System.out.println("----------------\nНазвание: " + title + "\nЖанр: комедия" + "\nДата показа: " + formatDate() + "\nВремя показа: " + time + "\n----------------");
+        System.out.println("----------------\nНазвание: " + getTitle() + "\nЖанр: комедия" + "\nДата показа: " + formatDate() + "\nВремя показа: " + getTime() + "\n----------------");
     }
 }
